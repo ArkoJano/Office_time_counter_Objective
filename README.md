@@ -1,8 +1,17 @@
 # Office_time_counter_Objective
 
-Python version: 3.8.7
-PyInstaler version : 4.3
-System: Windows 10
+-------------------- Functioning of the program ---------------------
+
+The program 'swi.py'/'swi.exe' after being started searches
+folder for the file 'input.csv', which contains data in format:
+
+Date; Event; Gate
+YYYY-MM-DD hh:mm:ss ;Reader [event]; E/[0-3]/KD1/[0-9]-[0-9]
+
+
+Based on this, it calculates the time spent in the office that
+day and writes it in the output file 'result'.
+(names are stored in constants at the beginning of the file)
 
 --------------------- Content ---------------------
 
@@ -36,26 +45,17 @@ In the main folder you can find:
 
 Executable file for the Windows system:
 
-	- swi.exe - file that will execute the entire program
+	swi.exe - file that will execute the entire program
 
 Python script (requires Python3 installed - tested for version 3.8.7)
 
-	 - source/swi.py - requires command line execution
+	source/swi.py - requires command line execution
 
 	    
 It is required that the input.csv file
 file and the program itself must be located in the same folder.
 
--------------------- Functioning of the program ---------------------
 
-The program 'swi.py'/'swi.exe' after being started searches
-folder for the file 'input.csv', which contains data in format:
-
-YYYY-MM-DD hh:mm:ss ;Reader [event]; E/[0-3]/KD1/[0-9]-[0-9]
-
-Based on this, it calculates the time spent in the office that
-day and writes it in the output file 'result'.
-(names are stored in constants at the beginning of the file)
 
 
 -------------------- Error handling ---------------------
