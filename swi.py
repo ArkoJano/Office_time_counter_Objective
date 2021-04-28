@@ -268,6 +268,44 @@ class OneDay:
         print("Out of office: ", self.out_of_office)
         print("Batch value: ", self.batch_obj.get_value())
 
+    def get_sum_of_time_one_day(self):
+
+        '''
+        metoda przypisuje atrybutowi sum_of_work rozpatrywanego
+        obiektu sume calego czasu spedzonego w biurze tego dnia
+        '''
+
+
+        # zmienna odpowiedzialna za przechowanie sumy czasu
+        # wszystkich partii pracy
+        sum_of_all_batch = timedelta(seconds=0)
+        
+        # ilosc "partii" w ktorych przebywal w biurze
+        number_of_batches = len(self.batches_of_time_in)
+
+
+        # jesli tego dnia nie przebywal w biurze 
+        if number_of_batches == 0:
+            self.set_flag('inconclusive')
+            self.sum_of_work =  timedelta(seconds = 0)
+
+        # jesli tego dnia przebywal w biurze
+        else:
+            # wykonaj dla kazdej parti pracy
+            for index in range(1,number_of_batches+1):
+                
+                # przypisujemy do zmiennych konkretne godzinowe wartosci wejscia
+                # i wyjscia do/z budynku
+                start_work = self.batches_of_time_in[index][ENTRY]
+                end_work = self.batches_of_time_in[index][EXIT]
+                    
+                # suma jednej partii
+                sum_of_one_batch = substract_datetime(start_work, end_work)
+                sum_of_all_batch += sum_of_one_batch
+
+            # zapisujemy w atrybucie sum_of_work konkretnego dnia ilosc czasu spedzonego w biurze
+            self.sum_of_work =  timedelta(seconds = sum_of_all_batch.seconds)
+
 
 class CollectionOfDays():
     
@@ -494,43 +532,8 @@ class CollectionOfDays():
 
     def get_sum_of_time(self):
 
-        '''
-        metoda przypisuje atrybutowi sum_of_work rozpatrywanego
-        obiektu sume calego czasu spedzonego w biurze tego dnia
-        '''
-
-        for day in self.dict_of_all_days.values():
-            
-
-            # zmienna odpowiedzialna za przechowanie sumy czasu
-            # wszystkich partii pracy
-            sum_of_all_batch = timedelta(seconds=0)
-            
-            # ilosc "partii" w ktorych przebywal w biurze
-            number_of_batches = len(list(day.batches_of_time_in.keys()))
-
-
-            # jesli tego dnia nie przebywal w biurze 
-            if number_of_batches == 0:
-                day.set_flag('inconclusive')
-                day.sum_of_work =  timedelta(seconds = 0)
-
-            # jesli tego dnia przebywal w biurze
-            else:
-                # wykonaj dla kazdej parti pracy
-                for index in range(1,number_of_batches+1):
-                    
-                    # przypisujemy do zmiennych konkretne godzinowe wartosci wejscia
-                    # i wyjscia do/z budynku
-                    start_work = day.batches_of_time_in[index][ENTRY]
-                    end_work = day.batches_of_time_in[index][EXIT]
-                        
-                    # suma jednej partii
-                    sum_of_one_batch = substract_datetime(start_work, end_work)
-                    sum_of_all_batch += sum_of_one_batch
-
-                # zapisujemy w atrybucie sum_of_work konkretnego dnia ilosc czasu spedzonego w biurze
-                day.sum_of_work =  timedelta(seconds = sum_of_all_batch.seconds)
+        for day_obj in self.dict_of_all_days.values():
+            day_obj.get_sum_of_time_one_day()
 
     def get_last_days(self):
 
