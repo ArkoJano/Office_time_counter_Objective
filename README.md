@@ -1,6 +1,6 @@
 # Office_time_counter_Objective
 
--------------------- Functioning of the program ---------------------
+# Functioning of the program 
 
 The program 'swi.py'/'swi.exe' after being started searches
 folder for the file 'input.csv', which contains data in format:
@@ -13,7 +13,7 @@ Based on this, it calculates the time spent in the office that
 day and writes it in the output file 'result'.
 (names are stored in constants at the beginning of the file)
 
---------------------- Content ---------------------
+# Content 
 
 In the main folder you can find:
 
@@ -40,8 +40,7 @@ In the main folder you can find:
 	__pycache__ - files created during the creation of the
 		   		  executable file by PyInstaler
 	
-
--------------------- Launching ---------------------
+# Launching 
 
 Executable file for the Windows system:
 
@@ -58,7 +57,7 @@ file and the program itself must be located in the same folder.
 
 
 
--------------------- Error handling ---------------------
+# Error handling 
 
 In case of incorrect data in the input.csv file
 an error will be reported and the program will terminate
